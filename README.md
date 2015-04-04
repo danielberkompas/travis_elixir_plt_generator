@@ -14,9 +14,11 @@ bucket was created in the "US Standard" region, or you'll encounter errors.
 1. Fork this repository.
 2. Set the following ENV vars for your fork on Travis:
 
-    ARTIFACTS_KEY=<AWS S3 Access Key>
-    ARTIFACTS_SECRET=<AWS S3 Access Secret>
-    ARTIFACTS_BUCKET=<AWS S3 Bucket Name>
+```
+ARTIFACTS_KEY=<AWS S3 Access Key>
+ARTIFACTS_SECRET=<AWS S3 Access Secret>
+ARTIFACTS_BUCKET=<AWS S3 Bucket Name>
+```
 
 3. Enable builds for your fork on Travis.
 4. Watch your PLTs flow into a `travis_elixir_plts` folder in your bucket.
