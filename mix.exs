@@ -8,7 +8,7 @@ defmodule ExTwilio.Mixfile do
      name: "Travis PLT Generator",
      source_url: "https://github.com/danielberkompas/ex_twilio",
      dialyzer: [
-       plt_file: "#{System.get_env("HOME")}/#{plt_filename}",
+       plt_file: "plts/#{plt_filename}",
        flags: ["--no_native"]
      ],
      deps: deps]

@@ -23,4 +23,4 @@ script:
   - MIX_ENV=test mix dialyzer.plt
 after_script:
   - curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install | bash
-  - /home/travis/bin/artifacts upload --key $ARTIFACTS_KEY --secret $ARTIFACTS_SECRET --bucket $ARTIFACTS_BUCKET test/dialyzer
+  - /home/travis/bin/artifacts upload --key $ARTIFACTS_KEY --secret $ARTIFACTS_SECRET --bucket $ARTIFACTS_BUCKET --target travis_elixir_plts plts
