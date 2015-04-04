@@ -1,0 +1,26 @@
+language: elixir
+elixir:
+  - 1.0.0
+  - 1.0.1
+  - 1.0.2
+  - 1.0.3
+otp_release:
+  - 17.4
+  - 17.3
+  - 17.2
+  - 17.1
+  - 17.0
+before_script:
+  - export PATH=`pwd`/elixir/bin:$PATH
+  - git clone git://github.com/jeremyjh/dialyxir.git 
+  - cd dialyxir
+  - mix archive.build
+  - mix archive.install --force
+  - cd ..
+  - mix local.hex --force
+  - mix deps.get --only test
+script:
+  - MIX_ENV=test mix dialyzer.plt
+after_script:
+  - curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install | bash
+  - /home/travis/bin/artifacts upload --key $ARTIFACTS_KEY --secret $ARTIFACTS_SECRET --bucket $ARTIFACTS_BUCKET test/dialyzer
