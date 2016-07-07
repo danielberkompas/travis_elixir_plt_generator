@@ -9,13 +9,15 @@ elixir:
   - 1.1.0
   - 1.1.1
   - 1.2.0
+  - 1.3.0
 otp_release:
+  - 19.0
   - 18.1
   - 18.0
   - 17.4
 before_script:
   - export PATH=`pwd`/elixir/bin:$PATH
-  - git clone git://github.com/jeremyjh/dialyxir.git 
+  - git clone git://github.com/jeremyjh/dialyxir.git
   - cd dialyxir
   - mix archive.build
   - mix archive.install --force
