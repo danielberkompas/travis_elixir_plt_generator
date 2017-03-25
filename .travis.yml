@@ -1,37 +1,32 @@
 language: elixir
 elixir:
-  - 1.0.0
-  - 1.0.1
-  - 1.0.2
-  - 1.0.3
-  - 1.0.4
-  - 1.0.5
-  - 1.1.0
-  - 1.1.1
-  - 1.2.0
-  - 1.3.0
-  - 1.3.1
-  - 1.3.2
   - 1.3.3
+  - 1.3.4
   - 1.4.0-rc.0
   - 1.4.0-rc.1
+  - 1.4.0
+  - 1.4.1
+  - 1.4.2
 otp_release:
+  - 19.2
+  - 19.1
   - 19.0
   - 18.1
   - 18.0
-  - 17.4
+addons:
+  artifacts:
+    debug: true
+    paths:
+      - $(ls plts/*.plt)
+    working_dir: plts
+    target_paths:
+      - travis_elixir_plts
 before_script:
   - export PATH=`pwd`/elixir/bin:$PATH
-  - git clone git://github.com/jeremyjh/dialyxir.git
+  - git clone https://github.com/jeremyjh/dialyxir.git
   - cd dialyxir
-  - mix deps.get
-  - mix archive.build
-  - mix archive.install --force
+  - MIX_ENV=prod mix do compile, archive.build
+  - MIX_ENV=prod mix archive.install --force
   - cd ..
-  - mix local.hex --force
-  - mix deps.get --only test
 script:
-  - MIX_ENV=test mix dialyzer.plt
-after_script:
-  - curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install | bash
-  - /home/travis/bin/artifacts upload --key $ARTIFACTS_KEY --secret $ARTIFACTS_SECRET --bucket $ARTIFACTS_BUCKET --target-paths travis_elixir_plts plts
+  - MIX_ENV=test mix dialyzer --plt
