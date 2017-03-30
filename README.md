@@ -23,7 +23,8 @@ instructions.
 
 ## Usage
 You must have an Amazon S3 account with a valid bucket name. Make sure that the
-bucket was created in the "US Standard" region, or you'll encounter errors.
+bucket was created in the "US East (N. Virginia)" region, or you'll encounter
+errors.
 
 1. Fork this repository.
 2. Set the following ENV vars for your fork on Travis:

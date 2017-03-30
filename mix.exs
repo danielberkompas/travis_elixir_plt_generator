@@ -8,10 +8,9 @@ defmodule ExTwilio.Mixfile do
      name: "Travis PLT Generator",
      source_url: "https://github.com/danielberkompas/ex_twilio",
      dialyzer: [
-       plt_file: "plts/#{plt_filename}",
-       flags: ["--no_native"]
+       plt_file: "plts/#{plt_filename()}",
      ],
-     deps: deps]
+     deps: deps()]
   end
 
   def application do
@@ -23,7 +22,7 @@ defmodule ExTwilio.Mixfile do
   end
 
   defp plt_filename do
-    "elixir-#{System.version}_#{otp_release}.plt"
+    "elixir-#{System.version}_#{otp_release()}.plt"
   end
 
   defp otp_release do
