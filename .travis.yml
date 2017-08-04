@@ -3,11 +3,11 @@ elixir:
   - 1.3.3
   - 1.3.4
   - 1.4.0-rc.0
-  - 1.4.0-rc.1
   - 1.4.0
   - 1.4.1
   - 1.4.2
   - 1.4.4
+  - 1.4.5
 otp_release:
   - 19.3
   - 19.2
@@ -17,8 +17,20 @@ otp_release:
   - 18.0
 matrix:
   include:
-    - otp_release: 20.0-rc1
-      elixir: 1.4.4
+    - otp_release: 18.0
+      elixir: 1.4.0-rc.1
+    - otp_release: 18.1
+      elixir: 1.4.0-rc.1
+    - otp_release: 20.0
+      elixir: 1.4.5
+    - otp_release: 18.0
+      elixir: 1.5.0
+    - otp_release: 18.1
+      elixir: 1.5.0
+    - otp_release: 19.3
+      elixir: 1.5.0
+    - otp_release: 20.0
+      elixir: 1.5.0
 addons:
   artifacts:
     debug: true
@@ -35,4 +47,4 @@ before_script:
   - MIX_ENV=prod mix archive.install --force
   - cd ..
 script:
-  - MIX_ENV=test mix dialyzer --plt
+  - MIX_ENV=test travis_wait 30 mix dialyzer --plt
